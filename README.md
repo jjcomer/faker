@@ -2,7 +2,7 @@
 
 Just a quick little app which lets you fake a web response really
 fast.
-Right now it only supports the customization the response code and the
+Right now it only supports the customization of the response code and the
 response itself.
 
 ## Usage
