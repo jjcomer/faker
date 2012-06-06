@@ -1,4 +1,4 @@
-(defproject faker "0.1.0"
+(defproject faker "0.1.1"
   :description "Because sometimes you just gotta fake it"
   :url "http://github.com/jjcomer/faker"
   :license {:name "Eclipse Public License"

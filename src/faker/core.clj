@@ -10,20 +10,17 @@
 
 (defn convert-conf
   [l]
-  (loop [l l r base]
-    (if (empty? l)
-      r
-      (let [{:keys [verb path res code]} (first l)
-            f-res (-> res
-                      (render nil)
-                      (resp/status code))]
-        (recur (rest l)
-               (routes r (case verb
-                           :get (GET path [] f-res)
-                           :put (PUT path [] f-res)
-                           :post (POST path [] f-res)
-                           :delete (DELETE path [] f-res)
-                           :any (ANY path [] f-res))))))))
+  (reduce (fn [b r]
+            (let [{:keys [verb path res code]} r
+                  f-res (-> res
+                            (render nil)
+                            (resp/status code))]
+              (routes b (case verb
+                          :get (GET path [] f-res)
+                          :put (PUT path [] f-res)
+                          :post (POST path [] f-res)
+                          :delete (DELETE path [] f-res)
+                          :any (ANY path [] f-res))))) base l))
 
 (defn -main
   "I don't do a whole lot."
